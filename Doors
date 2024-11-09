@@ -1,7 +1,7 @@
 local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NOTHING/main/source.lua'))();
 local Windows = NothingLibrary.new({
 	Title = "VortexForge",
-	Description = "Nothing UI Library",
+	Description = "Script Developed by TvZone And marcellus",
 	Keybind = Enum.KeyCode.LeftControl,
 	Logo = 'http://www.roblox.com/asset/?id=18898582662'
 })
