@@ -1,0 +1,126 @@
+local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NOTHING/main/source.lua'))();
+local Windows = NothingLibrary.new({
+	Title = "VortexForge",
+	Description = "Nothing UI Library",
+	Keybind = Enum.KeyCode.LeftControl,
+	Logo = 'http://www.roblox.com/asset/?id=18898582662'
+})
+local TabFrame = Windows:NewTab({
+	Title = "All",
+	Description = "all materials are here ig",
+	Icon = "rbxassetid://7733960981"
+})
+local Section = TabFrame:NewSection({
+	Title = "Esp",
+	Icon = "rbxassetid://7743869054",
+	Position = "Left"
+})
+
+Section:NewToggle({
+	Title = "Door",
+	Default = false,
+	Callback = function(tr)
+local RunService = game:GetService("RunService")
+local highlightedObjects = {}
+
+local function createESP(obj)
+    local BillboardGui = Instance.new("BillboardGui")
+    local TextLabel = Instance.new("TextLabel")
+
+    BillboardGui.Parent = obj
+    BillboardGui.AlwaysOnTop = true
+    BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+    BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+
+    TextLabel.Parent = BillboardGui
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Text = "Door"
+    TextLabel.TextScaled = true
+    TextLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+    TextLabel.TextStrokeTransparency = 0.5
+
+    highlightedObjects[obj] = true
+end
+
+local function handleNewObject(obj)
+    if obj:IsA("MeshPart") and obj.Name == "Door" and obj.Parent and obj.Parent.Name == "Door" then
+        if not highlightedObjects[obj] then
+            createESP(obj)
+        end
+    end
+end
+
+local function handleExistingObjects()
+    for _, obj in ipairs(game.Workspace:GetDescendants()) do
+        handleNewObject(obj)
+    end
+end
+
+game.Workspace.ChildAdded:Connect(function(child)
+    handleNewObject(child)
+end)
+
+RunService.Heartbeat:Connect(function()
+    handleExistingObjects()
+end)
+
+handleExistingObjects()
+	end,
+})
+
+Section:NewToggle({
+	Title = "Key",
+	Default = false,
+	Callback = function(tr)
+local RunService = game:GetService("RunService")
+local highlightedObjects = {}
+
+local function createESP(obj)
+    local BillboardGui = Instance.new("BillboardGui")
+    local TextLabel = Instance.new("TextLabel")
+
+    BillboardGui.Parent = obj
+    BillboardGui.AlwaysOnTop = true
+    BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+    BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+
+    TextLabel.Parent = BillboardGui
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Text = "KeyHitbox"
+    TextLabel.TextScaled = true
+    TextLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+    TextLabel.TextStrokeTransparency = 0.5
+
+    highlightedObjects[obj] = true
+end
+
+local function handleNewObject(obj)
+    if obj:IsA("Part") and obj.Name == "KeyHitbox" and obj.Parent and obj.Parent.Name == "Hitbox" then
+        if not highlightedObjects[obj] then
+            createESP(obj)
+        end
+    end
+end
+
+local function handleExistingObjects()
+    for _, obj in ipairs(game.Workspace:GetDescendants()) do
+        handleNewObject(obj)
+    end
+end
+
+game.Workspace.ChildAdded:Connect(function(child)
+    handleNewObject(child)
+end)
+
+RunService.Heartbeat:Connect(function(deltaTime)
+    handleExistingObjects()
+end)
+
+handleExistingObjects()
+	end,
+})
+
+
+
